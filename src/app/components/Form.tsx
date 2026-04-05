@@ -51,6 +51,7 @@ export default function Form() {
                         value={field.value}
                         onAccept={(value) => field.onChange(value)}
                         placeholder="Celular"
+                        className={errors.celular ? "input error" : "input"} // 🔥 AQUI
                     />
                 )}
             />
