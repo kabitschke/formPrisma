@@ -13,14 +13,18 @@ export default function Form() {
         console.log(data);
     }
 
+
     const {
         register,
         handleSubmit,
-        control, // 🔥 ADICIONAR ISSO
+        control,
         formState: { errors },
     } = useForm<FormData>({
         resolver: zodResolver(formSchema),
-        mode: "onChange", // 🔥 ESSENCIAL
+        mode: "onChange",
+        defaultValues: {
+            celular: "", // 🔥 ESSENCIAL
+        },
     });
 
 
@@ -72,7 +76,7 @@ export default function Form() {
             />
             {errors.cidade && <span>{errors.cidade.message}</span>}
 
-            <select {...register("estado")}>
+            <select {...register("estado")} className={errors.estado ? "input error" : "input"} >
                 <option value="">Estado</option>
                 {[
                     "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA",
@@ -84,7 +88,7 @@ export default function Form() {
             </select>
             {errors.estado && <span>{errors.estado.message}</span>}
 
-            <select {...register("estadoCivil")}>
+            <select {...register("estadoCivil")} className={errors.estadoCivil ? "input error" : "input"}>
                 <option value="">Estado Civil</option>
                 <option value="solteiro">Solteiro</option>
                 <option value="casado">Casado</option>
