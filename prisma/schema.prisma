@@ -10,10 +10,14 @@ datasource db {
 model Contato {
   id          Int      @id @default(autoincrement())
   nome        String
-  sobrenome   String
-  celular     String   @unique
   email       String   @unique
+  celular     String   @unique
+  cpf         String   @unique
+  rua         String
+  numero      Int
   cidade      String
+  bairro      String
+  cep         String
   estado      String
   estadoCivil String
   createdAt   DateTime @default(now())

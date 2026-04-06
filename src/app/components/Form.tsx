@@ -24,6 +24,8 @@ export default function Form() {
         mode: "onChange",
         defaultValues: {
             celular: "",
+            cpf: "",
+            cep: "",
         },
     });
 
@@ -40,11 +42,12 @@ export default function Form() {
             {errors.nome && <span>{errors.nome.message}</span>}
 
             <input
-                {...register("sobrenome")}
-                placeholder="Sobrenome"
-                className={errors.sobrenome ? "input error" : "input"}
+                {...register("email")}
+                placeholder="Email"
+                className={errors.email ? "input error" : "input"}
             />
-            {errors.sobrenome && <span>{errors.sobrenome.message}</span>}
+            {errors.email && <span>{errors.email.message}</span>}
+
 
             <Controller
                 name="celular"
@@ -61,13 +64,36 @@ export default function Form() {
             />
             {errors.celular && <span>{errors.celular.message}</span>}
 
+            <Controller
+                name="cpf"
+                control={control}
+                render={({ field }) => (
+                    <IMaskInput
+                        mask="000.000.000-00"
+                        value={field.value}
+                        onAccept={(value) => field.onChange(value)}
+                        placeholder="CPF"
+                        className={errors.cpf ? "input error" : "input"}
+                    />
+                )}
+            />
+            {errors.cpf && <span>{errors.cpf.message}</span>}
+
+
 
             <input
-                {...register("email")}
-                placeholder="Email"
-                className={errors.email ? "input error" : "input"}
+                {...register("rua")}
+                placeholder="Rua"
+                className={errors.rua ? "input error" : "input"}
             />
-            {errors.email && <span>{errors.email.message}</span>}
+            {errors.rua && <span>{errors.rua.message}</span>}
+
+            <input
+                {...register("numero")}
+                placeholder="Número"
+                className={errors.numero ? "input error" : "input"}
+            />
+            {errors.numero && <span>{errors.numero.message}</span>}
 
             <input
                 {...register("cidade")}
@@ -75,6 +101,28 @@ export default function Form() {
                 className={errors.cidade ? "input error" : "input"}
             />
             {errors.cidade && <span>{errors.cidade.message}</span>}
+
+            <input
+                {...register("bairro")}
+                placeholder="Bairro"
+                className={errors.bairro ? "input error" : "input"}
+            />
+            {errors.bairro && <span>{errors.bairro.message}</span>}
+
+            <Controller
+                name="cep"
+                control={control}
+                render={({ field }) => (
+                    <IMaskInput
+                        mask="00000-000"
+                        value={field.value}
+                        onAccept={(value) => field.onChange(value)}
+                        placeholder="CEP"
+                        className={errors.cep ? "input error" : "input"}
+                    />
+                )}
+            />
+            {errors.cep && <span>{errors.cep.message}</span>}
 
             <select {...register("estado")} className={errors.estado ? "input error" : "input"} >
                 <option value="">Estado</option>
