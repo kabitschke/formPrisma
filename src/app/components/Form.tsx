@@ -10,7 +10,7 @@ export default function Form() {
 
 
     function onSubmit(data: FormData) {
-        console.log(data);
+        handleAddContato(data);
     }
 
 
@@ -28,6 +28,21 @@ export default function Form() {
             cep: "",
         },
     });
+
+    async function handleAddContato(data: FormData) {
+        if (!data) return
+
+        await fetch('/api/form', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+
+
+
+        })
+    }
 
 
 
@@ -89,7 +104,8 @@ export default function Form() {
             {errors.rua && <span>{errors.rua.message}</span>}
 
             <input
-                {...register("numero")}
+                type="number"
+                {...register("numero", { valueAsNumber: true })}
                 placeholder="Número"
                 className={errors.numero ? "input error" : "input"}
             />

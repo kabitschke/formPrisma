@@ -1,4 +1,6 @@
-#Este formulário faz as validação dos campos, utilizando zod e react-hook-form.
+# Formulário
+
+Este formulário faz as validações dos campos, utilizando zod e react-hook-form e salva os dados no banco de dados utilizando prisma.
 
 ## Tecnologias utilizadas
 - React
