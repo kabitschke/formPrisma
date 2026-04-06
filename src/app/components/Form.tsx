@@ -23,7 +23,7 @@ export default function Form() {
         resolver: zodResolver(formSchema),
         mode: "onChange",
         defaultValues: {
-            celular: "", // 🔥 ESSENCIAL
+            celular: "",
         },
     });
 
@@ -55,7 +55,7 @@ export default function Form() {
                         value={field.value}
                         onAccept={(value) => field.onChange(value)}
                         placeholder="Celular"
-                        className={errors.celular ? "input error" : "input"} // 🔥 AQUI
+                        className={errors.celular ? "input error" : "input"}
                     />
                 )}
             />
