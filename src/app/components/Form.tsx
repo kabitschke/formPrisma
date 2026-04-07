@@ -5,14 +5,25 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { formSchema, FormData } from "../components/schema";
 import { IMaskInput } from "react-imask";
 import { z } from "zod";
+import { useState } from "react";
+import { useEffect } from "react";
+import { id } from "zod/locales";
+
+
 
 
 export default function Form() {
 
-    function onSubmit(data: z.output<typeof formSchema>) {
-        handleAddContato(data);
-    }
+    const [isEditing, setIsEditing] = useState(false);
+    const [editId, setEditId] = useState<number | null>(null);
 
+    function onSubmit(data: z.output<typeof formSchema>) {
+        if (isEditing && editId) {
+            handleEditContact(data);
+        } else {
+            handleAddContato(data);
+        }
+    }
     const form = useForm<
         z.input<typeof formSchema>,   // entrada (form)
         any,
@@ -50,26 +61,58 @@ export default function Form() {
     }
 
 
+    async function handleLoadContact(id: number) {
+        const response = await fetch(`/api/form/${id}`);
+        const data = await response.json();
+
+        reset({
+            ...data,
+            numero: String(data.numero),
+        });
+
+        setIsEditing(true);
+        setEditId(id);
+    }
+
+    useEffect(() => {
+        handleLoadContact(2);
+    }, []);
+
+
+    async function handleEditContact(data: z.output<typeof formSchema>) {
+        if (!editId) return;
+
+        await fetch(`/api/form/${editId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        reset();
+        setIsEditing(false);
+        setEditId(null);
+    }
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="form">
-
+            <label htmlFor="nome">Nome:</label>
             <input
                 {...register("nome")}
-                placeholder="Nome"
+                id="nome"
                 className={errors.nome ? "input error" : "input"}
-
             />
             {errors.nome && <span>{errors.nome.message}</span>}
-
+            <label htmlFor="email">Email:</label>
             <input
                 {...register("email")}
-                placeholder="Email"
+                id="email"
                 className={errors.email ? "input error" : "input"}
             />
             {errors.email && <span>{errors.email.message}</span>}
 
-
+            <label htmlFor="celular">Celular:</label>
             <Controller
                 name="celular"
                 control={control}
@@ -78,13 +121,14 @@ export default function Form() {
                         mask="(00) 00000-0000"
                         value={field.value}
                         onAccept={(value) => field.onChange(value)}
-                        placeholder="Celular"
+                        id="celular"
                         className={errors.celular ? "input error" : "input"}
                     />
                 )}
             />
             {errors.celular && <span>{errors.celular.message}</span>}
 
+            <label htmlFor="cpf">CPF:</label>
             <Controller
                 name="cpf"
                 control={control}
@@ -93,7 +137,7 @@ export default function Form() {
                         mask="000.000.000-00"
                         value={field.value}
                         onAccept={(value) => field.onChange(value)}
-                        placeholder="CPF"
+                        id="cpf"
                         className={errors.cpf ? "input error" : "input"}
                     />
                 )}
@@ -101,35 +145,39 @@ export default function Form() {
             {errors.cpf && <span>{errors.cpf.message}</span>}
 
 
-
+            <label htmlFor="rua">Rua:</label>
             <input
                 {...register("rua")}
-                placeholder="Rua"
+                id="rua"
                 className={errors.rua ? "input error" : "input"}
             />
             {errors.rua && <span>{errors.rua.message}</span>}
 
+            <label htmlFor="numero">Número:</label>
             <input
                 {...register("numero")}
-                placeholder="Número"
+                id="numero"
                 className={errors.numero ? "input error" : "input"}
             />
             {errors.numero && <span>{errors.numero.message}</span>}
 
+            <label htmlFor="cidade">Cidade:</label>
             <input
                 {...register("cidade")}
-                placeholder="Cidade"
+                id="cidade"
                 className={errors.cidade ? "input error" : "input"}
             />
             {errors.cidade && <span>{errors.cidade.message}</span>}
 
+            <label htmlFor="bairro">Bairro:</label>
             <input
                 {...register("bairro")}
-                placeholder="Bairro"
+                id="bairro"
                 className={errors.bairro ? "input error" : "input"}
             />
             {errors.bairro && <span>{errors.bairro.message}</span>}
 
+            <label htmlFor="cep">CEP:</label>
             <Controller
                 name="cep"
                 control={control}
@@ -138,7 +186,7 @@ export default function Form() {
                         mask="00000-000"
                         value={field.value}
                         onAccept={(value) => field.onChange(value)}
-                        placeholder="CEP"
+                        id="cep"
                         className={errors.cep ? "input error" : "input"}
                     />
                 )}
