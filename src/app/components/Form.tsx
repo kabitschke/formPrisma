@@ -4,24 +4,22 @@ import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formSchema, FormData } from "../components/schema";
 import { IMaskInput } from "react-imask";
+import { z } from "zod";
 
 
 export default function Form() {
 
-
-    function onSubmit(data: FormData) {
+    function onSubmit(data: z.output<typeof formSchema>) {
         handleAddContato(data);
     }
 
-
-    const {
-        register,
-        handleSubmit,
-        control,
-        formState: { errors },
-    } = useForm<FormData>({
+    const form = useForm<
+        z.input<typeof formSchema>,   // entrada (form)
+        any,
+        z.output<typeof formSchema>   // saída (transformado)
+    >({
         resolver: zodResolver(formSchema),
-        mode: "onChange",
+        mode: "onSubmit",
         defaultValues: {
             celular: "",
             cpf: "",
@@ -29,8 +27,16 @@ export default function Form() {
         },
     });
 
-    async function handleAddContato(data: FormData) {
-        if (!data) return
+    const {
+        register,
+        handleSubmit,
+        reset,
+        control,
+        formState: { errors },
+    } = form;
+
+    async function handleAddContato(data: z.output<typeof formSchema>) {
+        if (!data) return;
 
         await fetch('/api/form', {
             method: 'POST',
@@ -38,10 +44,9 @@ export default function Form() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
+        });
 
-
-
-        })
+        reset(); // Limpa o formulário após o envio
     }
 
 
@@ -53,6 +58,7 @@ export default function Form() {
                 {...register("nome")}
                 placeholder="Nome"
                 className={errors.nome ? "input error" : "input"}
+
             />
             {errors.nome && <span>{errors.nome.message}</span>}
 
@@ -104,8 +110,7 @@ export default function Form() {
             {errors.rua && <span>{errors.rua.message}</span>}
 
             <input
-                type="number"
-                {...register("numero", { valueAsNumber: true })}
+                {...register("numero")}
                 placeholder="Número"
                 className={errors.numero ? "input error" : "input"}
             />

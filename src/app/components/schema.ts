@@ -5,7 +5,11 @@ export const formSchema = z.object({
         .regex(/^[A-Za-zÀ-ÿ\s]+$/, "Nome deve conter apenas letras"),
     rua: z.string().min(2, "Preencha o campo corretamente")
         .regex(/^[A-Za-zÀ-ÿ\s]+$/, "Preencha o campo corretamente"),
-    numero: z.number().min(1, "Preencha o campo corretamente"),
+    numero: z
+        .string()
+        .min(1, "Preencha o campo corretamente")
+        .regex(/^\d+$/, "Apenas números")
+        .transform((val) => Number(val)),
     bairro: z.string().min(2, "Preencha o campo corretamente")
         .regex(/^[A-Za-zÀ-ÿ\s]+$/, "Preencha o campo corretamente"),
     celular: z
