@@ -32,3 +32,18 @@ export async function PATCH(
 
     return Response.json(updatedContato); // 👈 IMPORTANTE
 }
+
+export async function DELETE(
+    req: Request,
+    context: { params: Promise<{ id: string }> }
+) {
+    const { id } = await context.params
+
+    await prisma.contato.delete({
+        where: {
+            id: Number(id)
+        }
+    })
+
+    return Response.json({ ok: true })
+}

@@ -78,7 +78,7 @@ export default function Form() {
     >({
         resolver: zodResolver(formSchema),
         mode: "onSubmit",
-        reValidateMode: "onSubmit", // 👈 resolve erro das máscaras
+        //reValidateMode: "onSubmit", // 👈 resolve erro das máscaras
         defaultValues: {
             celular: "",
             cpf: "",

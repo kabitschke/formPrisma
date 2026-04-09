@@ -30,7 +30,15 @@ export default function ContatosPage() {
   }
 
   async function handleDelete(id: number) {
+    const confirmDelete = confirm('Tem certeza que deseja excluir? Todos os dados relacionados a esse contato serão perdidos.')
 
+    if (!confirmDelete) return
+
+    await fetch(`/api/form/${id}`, {
+      method: 'DELETE'
+    })
+
+    loadContatos()
   }
 
   async function handleEdit(id: number) {
