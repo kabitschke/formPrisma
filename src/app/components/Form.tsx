@@ -2,35 +2,83 @@
 
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { formSchema, FormData } from "../components/schema";
+import { formSchema } from "../components/schema";
 import { IMaskInput } from "react-imask";
 import { z } from "zod";
-import { useState } from "react";
-import { useEffect } from "react";
-import { id } from "zod/locales";
+import { useState, useEffect } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 
 
-
+type Contato = {
+    nome: string;
+    email: string;
+    celular: string;
+    cpf: string;
+    rua: string;
+    numero: number;
+    cidade: string;
+    bairro: string;
+    cep: string;
+    estado: string;
+    estadoCivil: string;
+};
 
 export default function Form() {
 
     const [isEditing, setIsEditing] = useState(false);
     const [editId, setEditId] = useState<number | null>(null);
+    const searchParams = useSearchParams();
+    const id = searchParams.get("id");
+    const router = useRouter();
 
-    function onSubmit(data: z.output<typeof formSchema>) {
+    async function onSubmit(data: Contato) {
         if (isEditing && editId) {
-            handleEditContact(data);
+            // Atualiza contato existente
+            await fetch(`/api/form/${editId}`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+            });
+
         } else {
-            handleAddContato(data);
+            // Cria novo contato
+            await fetch("/api/form", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+            });
         }
+
+        reset({
+            nome: "",
+            email: "",
+            celular: "",
+            cpf: "",
+            rua: "",
+            numero: "",
+            cidade: "",
+            bairro: "",
+            cep: "",
+            estado: "",
+            estadoCivil: "",
+        });
+
+
+        clearErrors();
+
+        setIsEditing(false);
+        setEditId(null);
+
+        router.replace("/");
     }
     const form = useForm<
         z.input<typeof formSchema>,   // entrada (form)
-        any,
+        Contato,
         z.output<typeof formSchema>   // saída (transformado)
     >({
         resolver: zodResolver(formSchema),
         mode: "onSubmit",
+        reValidateMode: "onSubmit", // 👈 resolve erro das máscaras
         defaultValues: {
             celular: "",
             cpf: "",
@@ -40,60 +88,31 @@ export default function Form() {
 
     const {
         register,
+        clearErrors,
         handleSubmit,
         reset,
         control,
         formState: { errors },
     } = form;
 
-    async function handleAddContato(data: z.output<typeof formSchema>) {
-        if (!data) return;
-
-        await fetch('/api/form', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
-
-        reset(); // Limpa o formulário após o envio
-    }
-
-
-    async function handleLoadContact(id: number) {
-        const response = await fetch(`/api/form/${id}`);
-        const data = await response.json();
-
-        reset({
-            ...data,
-            numero: String(data.numero),
-        });
-
-        setIsEditing(true);
-        setEditId(id);
-    }
-
     useEffect(() => {
-        handleLoadContact(2);
-    }, []);
+        if (!id) return;
 
+        async function loadContact() {
+            const response = await fetch(`/api/form/${id}`);
+            const data = await response.json();
 
-    async function handleEditContact(data: z.output<typeof formSchema>) {
-        if (!editId) return;
+            reset({
+                ...data,
+                numero: String(data.numero), // 👈 importante se seu input é string
+            });
 
-        await fetch(`/api/form/${editId}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
+            setIsEditing(true);
+            setEditId(Number(id));
+        }
 
-        reset();
-        setIsEditing(false);
-        setEditId(null);
-    }
+        loadContact();
+    }, [id]);
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="form">
@@ -214,7 +233,10 @@ export default function Form() {
             </select>
             {errors.estadoCivil && <span>{errors.estadoCivil.message}</span>}
 
-            <button type="submit">Enviar</button>
+
+            <button type="submit">
+                {isEditing ? "Atualizar" : "Salvar"}
+            </button>
         </form>
     );
 }

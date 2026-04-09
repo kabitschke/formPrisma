@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 
 type Contato = {
@@ -20,11 +21,21 @@ type Contato = {
 
 export default function ContatosPage() {
   const [contatos, setContatos] = useState<Contato[]>([]);
+  const router = useRouter();
 
   async function loadContatos() {
     const response = await fetch("/api/form");
     const data = await response.json();
     setContatos(data);
+  }
+
+  async function handleDelete(id: number) {
+
+  }
+
+  async function handleEdit(id: number) {
+    router.push(`/?id=${id}`);
+
   }
 
   useEffect(() => {
@@ -35,41 +46,40 @@ export default function ContatosPage() {
     <div>
       <h1>Lista de Contatos</h1>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Celular</th>
-            <th>CPF</th>
-            <th>Rua</th>
-            <th>Numero</th>
-            <th>Cidade</th>
-            <th>Bairro</th>
-            <th>CEP</th>
-            <th>Estado</th>
-            <th>Estado Civil</th>
-          </tr>
-        </thead>
+      <div className="container">
 
-        <tbody>
-          {contatos.map((contato) => (
-            <tr key={contato.id}>
-              <td>{contato.nome}</td>
-              <td>{contato.email}</td>
-              <td>{contato.celular}</td>
-              <td>{contato.cpf}</td>
-              <td>{contato.rua}</td>
-              <td>{contato.numero}</td>
-              <td>{contato.cidade}</td>
-              <td>{contato.bairro}</td>
-              <td>{contato.cep}</td>
-              <td>{contato.estado}</td>
-              <td>{contato.estadoCivil}</td>
+
+
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Email</th>
+              <th>Celular</th>
+              <th>CPF</th>
+              <th>Ações</th>
+
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {contatos.map((contato) => (
+              <tr key={contato.id}>
+                <td>{contato.nome}</td>
+                <td>{contato.email}</td>
+                <td>{contato.celular}</td>
+                <td>{contato.cpf}</td>
+                <td>
+                  <button onClick={() => handleEdit(contato.id)}>✏️</button>
+                  <button onClick={() => handleDelete(contato.id)}>❌</button>
+                </td>
+
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+      </div>
     </div>
   );
 }
