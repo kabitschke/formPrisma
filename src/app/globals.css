@@ -1,3 +1,9 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 body {
   background-color: #ccc;
 }
@@ -129,4 +135,64 @@ table button {
   cursor: pointer;
   background: none;
   border: none;
+}
+
+
+/***************Login******************/
+.login-container {
+  max-width: 400px;
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-area {
+  width: 400px;
+  height: 300px;
+  border-radius: 10px;
+  background-color: #B0C4DE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.login-area form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-area h1 {
+  margin-bottom: 20px;
+
+}
+
+.login-area form input {
+  margin-bottom: 20px;
+}
+
+.login-area button {
+  padding: 10px;
+  border: none;
+  background: #1a44d9;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+
+.login-area input {
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #60a5fa;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+}
+
+.login-area input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 1px rgba(12, 171, 234, 0.2);
 }
