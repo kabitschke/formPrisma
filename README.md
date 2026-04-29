@@ -14,6 +14,12 @@ Este formulário faz as validações dos campos, utilizando zod e react-hook-for
 3. Inicie o projeto com `npm run dev`
 4. Acesse `http://localhost:3000` no seu navegador
 
+## Utilizando Prisma
+1. crie o arquivo .env `cp .env.example .env`
+2. Insira os dados para conexão.
+3. rode o comando `npx prisma migrate dev --name init`
+4. gere client `npx prisma generate`
+
 ## Funcionalidades
 - Validação de campos utilizando Zod
 - Gerenciamento de formulários com React Hook Form
