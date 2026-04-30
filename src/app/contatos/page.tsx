@@ -20,6 +20,17 @@ type Contato = {
 };
 
 export default function ContatosPage() {
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      window.location.href = "/";
+    }
+  }, []);
+
+
+
   const [contatos, setContatos] = useState<Contato[]>([]);
   const router = useRouter();
 
