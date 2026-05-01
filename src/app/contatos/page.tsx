@@ -53,7 +53,7 @@ export default function ContatosPage() {
   }
 
   async function handleEdit(id: number) {
-    router.push(`/?id=${id}`);
+    router.push(`/formulario/?id=${id}`);
 
   }
 

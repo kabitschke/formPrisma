@@ -18,9 +18,6 @@ export const formSchema = z.object({
     cpf: z.string().regex(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/, "Preencha o campo corretamente"),
     cep: z.string().regex(/^\d{5}-\d{3}$/, "Preencha o campo corretamente"),
     email: z.string().email("Email inválido"),
-    password: z
-        .string()
-        .min(6, "A senha deve ter pelo menos 6 caracteres"),
     cidade: z.string().min(2, "Cidade obrigatória")
         .regex(/^[A-Za-zÀ-ÿ\s]+$/, "Cidade deve conter apenas letras"),
     estado: z.string().length(2, "Selecione um estado"),

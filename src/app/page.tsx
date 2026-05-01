@@ -43,23 +43,26 @@ export default function Home() {
   }
 
 
-  /** 
+  /*
     async function gerarHash() {
       const hash = await bcrypt.hash("123456", 10);
       console.log(hash);
     }
   
     gerarHash();
-  $2b$10$9TkYLlBDRjmW/Pfpeu0Z3.8wyk4o4mTJkG0irFGijbMEzvkxZp89y
-  
-    */
+ 
+  $2b$10$gyiEA7NeuJ.2bGRIPi19p.VT5A9XKT9BMmu1uVL9q07tbLVW4MkdC
+
+  */
+
+
 
   return (
     <div className="login-container">
       <div className="login-area">
         <h1>Login</h1>
 
-        <form onSubmit={handleSubmit(handleLogin)}>
+        <form onSubmit={handleSubmit(handleLogin)} className="form">
 
           <label>Email:</label>
           <input type="text" {...register("email")}
@@ -67,7 +70,7 @@ export default function Home() {
           />
           {apiError === "Usuário não encontrado" && (
             <span>{apiError}</span>
-          )}
+          )}  {errors.email && <span>{errors.email.message}</span>}
 
 
           {/* SENHA */}
@@ -77,7 +80,7 @@ export default function Home() {
           />
           {apiError === "Senha inválida" && (
             <span>{apiError}</span>
-          )}
+          )} {errors.password && <span>{errors.password.message}</span>}
 
           <button type="submit">Entrar</button>
         </form>
