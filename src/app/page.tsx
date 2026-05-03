@@ -1,14 +1,11 @@
 "use client";
 
 import { useState } from "react";
-//import bcrypt from "bcryptjs";
 import { loginSchema, LoginData } from "../app/components/loginSchema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function Home() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [apiError, setApiError] = useState("");
 
   const {
@@ -41,21 +38,6 @@ export default function Home() {
       setApiError(result.error);
     }
   }
-
-
-  /*
-    async function gerarHash() {
-      const hash = await bcrypt.hash("123456", 10);
-      console.log(hash);
-    }
-  
-    gerarHash();
- 
-  $2b$10$gyiEA7NeuJ.2bGRIPi19p.VT5A9XKT9BMmu1uVL9q07tbLVW4MkdC
-
-  */
-
-
 
   return (
     <div className="login-container">
