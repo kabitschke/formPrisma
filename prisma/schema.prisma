@@ -7,6 +7,14 @@ datasource db {
   provider = "mysql"
 }
 
+model User {
+  id        String    @id @default(uuid())
+  email     String    @unique
+  password  String
+  createdAt DateTime  @default(now())
+  contatos  Contato[]
+}
+
 model Contato {
   id          Int      @id @default(autoincrement())
   nome        String
@@ -20,13 +28,8 @@ model Contato {
   cep         String
   estado      String
   estadoCivil String
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-}
-
-model User {
-  id        String   @id @default(uuid())
-  email     String   @unique
-  password  String
-  createdAt DateTime @default(now())
 }

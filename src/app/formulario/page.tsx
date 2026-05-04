@@ -25,11 +25,18 @@ type Contato = {
 
 export default function Formulario() {
 
+    const [token, setToken] = useState<string | null>(null);
+
     const [isEditing, setIsEditing] = useState(false);
     const [editId, setEditId] = useState<number | null>(null);
     const searchParams = useSearchParams();
     const id = searchParams.get("id");
     const router = useRouter();
+
+    useEffect(() => {
+        const storedToken = localStorage.getItem("token");
+        setToken(storedToken);
+    }, []);
 
     async function onSubmit(data: Contato) {
 
@@ -37,17 +44,31 @@ export default function Formulario() {
             // Atualiza contato existente
             await fetch(`/api/form/${editId}`, {
                 method: "PATCH",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
                 body: JSON.stringify(data),
             });
 
+
         } else {
-            // Cria novo contato
-            await fetch("/api/form", {
+            // Cria um novo contato
+            const response = await fetch("/api/form", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`, // 👈 importante
+                },
                 body: JSON.stringify(data),
             });
+
+            if (!response.ok) {
+                const error = await response.json();
+                console.log("Erro backend:", error);
+                alert(error.error || "Erro ao salvar");
+                return;
+            }
 
 
 
@@ -75,6 +96,8 @@ export default function Formulario() {
         //Redireciona para a página de contatos
         router.replace("/contatos");
     }
+
+
     const form = useForm<
         z.input<typeof formSchema>,   // entrada (form)
         Contato,
@@ -117,6 +140,14 @@ export default function Formulario() {
 
         loadContact();
     }, [id]);
+
+    if (!token) {
+        alert("Usuário não autenticado");
+        return;
+    }
+
+    if (!token) return <p>Carregando...</p>;
+
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="form">

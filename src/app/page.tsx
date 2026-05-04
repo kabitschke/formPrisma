@@ -17,7 +17,6 @@ export default function Home() {
   });
 
   async function handleLogin(data: LoginData) {
-    //e.preventDefault();
 
     setApiError(""); // limpa erro anterior
 
