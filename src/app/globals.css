@@ -13,11 +13,28 @@ h1 {
 }
 
 .form {
-  max-width: 400px;
+  max-width: 800px;
   margin: 40px auto;
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* padrão dos campos */
+.form-grid .field,
+.form-grid>div {
+  display: flex;
+  flex-direction: column;
+}
+
+.form input {
+  width: 100%;
 }
 
 .form button {
