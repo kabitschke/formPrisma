@@ -207,3 +207,14 @@ table button {
   border-color: #3b82f6;
   box-shadow: 0 0 0 1px rgba(12, 171, 234, 0.2);
 }
+
+
+.user {
+  display: flex;
+  flex-direction: column;
+}
+
+.user a {
+  color: #3b82f6;
+  cursor: pointer;
+}

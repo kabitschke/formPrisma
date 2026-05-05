@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { jwtDecode } from "jwt-decode";
+import Header from "../components/Header";
 
 
 type TokenData = {
@@ -26,20 +26,13 @@ type Contato = {
 };
 
 export default function ContatosPage() {
-  const [user, setUSer] = useState('');
+
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-
     if (!token) {
-      window.location.href = "/";
+      router.replace('/');
     }
-    if (token) {
-      const decoded = jwtDecode<TokenData>(token);
-      setUSer(decoded.email);
-    }
-
-
   }, []);
 
 
@@ -77,7 +70,7 @@ export default function ContatosPage() {
   return (
     <div>
       <h1>Lista de Contatos</h1>
-      <span>{`Olá: ${user}`}</span>
+      <Header />
 
       <div className="container">
 
