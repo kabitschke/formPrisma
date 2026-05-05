@@ -2,7 +2,7 @@ import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-const JWT_SECRET = "segredo_super_secreto";
+const JWT_SECRET = process.env.JWT_SECRET!;
 
 export async function POST(req: Request) {
     const { email, password } = await req.json();

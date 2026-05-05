@@ -8,21 +8,7 @@ import { z } from "zod";
 import { useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Header from "../components/Header";
-
-
-type Contato = {
-    nome: string;
-    email: string;
-    celular: string;
-    cpf: string;
-    rua: string;
-    numero: number;
-    cidade: string;
-    bairro: string;
-    cep: string;
-    estado: string;
-    estadoCivil: string;
-};
+import { ContatoForm } from "../types/contact";
 
 export default function Formulario() {
 
@@ -42,7 +28,7 @@ export default function Formulario() {
         }
     }, []);
 
-    async function onSubmit(data: Contato) {
+    async function onSubmit(data: ContatoForm) {
 
         if (isEditing && editId) {
             // Atualiza contato existente
@@ -74,8 +60,6 @@ export default function Formulario() {
                 return;
             }
 
-
-
         }
         //Limpa os campos
         reset({
@@ -104,7 +88,7 @@ export default function Formulario() {
 
     const form = useForm<
         z.input<typeof formSchema>,   // entrada (form)
-        Contato,
+        ContatoForm,
         z.output<typeof formSchema>   // saída (transformado)
     >({
         resolver: zodResolver(formSchema),

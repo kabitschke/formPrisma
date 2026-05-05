@@ -3,30 +3,9 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Header from "../components/Header";
-
-
-type TokenData = {
-  userId: string;
-  email: string;
-};
-
-type Contato = {
-  id: number;
-  nome: string;
-  email: string;
-  celular: string;
-  cpf: string;
-  rua: string;
-  numero: number;
-  cidade: string;
-  bairro: string;
-  cep: string;
-  estado: string;
-  estadoCivil: string;
-};
+import { Contato } from "../types/contact";
 
 export default function ContatosPage() {
-
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -34,8 +13,6 @@ export default function ContatosPage() {
       router.replace('/');
     }
   }, []);
-
-
 
   const [contatos, setContatos] = useState<Contato[]>([]);
   const router = useRouter();
@@ -60,7 +37,6 @@ export default function ContatosPage() {
 
   async function handleEdit(id: number) {
     router.push(`/formulario/?id=${id}`);
-
   }
 
   useEffect(() => {
@@ -69,13 +45,10 @@ export default function ContatosPage() {
 
   return (
     <div>
-      <h1>Lista de Contatos</h1>
       <Header />
+      <h1>Lista de Contatos</h1>
 
       <div className="container">
-
-
-
         <table>
           <thead>
             <tr>
@@ -84,7 +57,6 @@ export default function ContatosPage() {
               <th>Celular</th>
               <th>CPF</th>
               <th>Ações</th>
-
             </tr>
           </thead>
 
