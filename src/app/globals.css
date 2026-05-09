@@ -20,21 +20,46 @@ h1 {
   gap: 10px;
 }
 
-.form-grid {
+.form-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: 2fr 2fr 1fr;
   gap: 20px;
 }
 
+.select {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 20px 0px;
+  gap: 20px;
+}
+
+.select-item {
+  display: grid;
+}
+
+fieldset {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+legend {
+  font-size: 20px;
+}
+
+
+
 /* padrão dos campos */
-.form-grid .field,
-.form-grid>div {
+.form-row>div {
   display: flex;
   flex-direction: column;
 }
 
 .form input {
   width: 100%;
+}
+
+.form {
+  padding: 20px 20px;
 }
 
 .form button {
@@ -54,7 +79,6 @@ h1 {
 .form span {
   color: #FF0000;
   font-size: 13px;
-  margin-top: -5px;
 }
 
 .form input:invalid,
@@ -66,6 +90,15 @@ h1 {
 .input.error:focus {
   border-color: #FF0000;
   /*out*/
+}
+
+.errorLogin {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #FF0000;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f7a0a0;
 }
 
 .form select,
@@ -234,4 +267,27 @@ table button {
 .user a {
   color: #3b82f6;
   cursor: pointer;
+}
+
+.icon {
+  font-size: 10px;
+  color: #3b82f6;
+  margin-left: 40px;
+}
+
+.icone {
+  font-size: 12px;
+  cursor: pointer;
+  color: #1a44d9;
+  margin-right: 10px;
+
+}
+
+
+@media (max-width: 730px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+
 }

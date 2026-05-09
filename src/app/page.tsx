@@ -4,9 +4,11 @@ import { useState } from "react";
 import { loginSchema, LoginData } from "../app/components/loginSchema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { LoginInput } from "./components/LoginInput";
 
 export default function Home() {
   const [apiError, setApiError] = useState("");
+  const [passwordField, setPasswordField] = useState('');
 
   const {
     register,
@@ -45,23 +47,29 @@ export default function Home() {
 
         <form onSubmit={handleSubmit(handleLogin)} className="form">
 
+          {apiError && (
+            <span className="errorLogin"><span style={{ fontWeight: "bold" }}>Erro</span>{apiError}</span>
+          )}
+
           <label>Email:</label>
           <input type="text" {...register("email")}
             className={errors.email ? "input error" : "input"}
           />
-          {apiError === "Usuário não encontrado" && (
-            <span>{apiError}</span>
-          )}  {errors.email && <span>{errors.email.message}</span>}
-
-
-          {/* SENHA */}
+          {errors.email && <span>{errors.email.message}</span>}
+          {/* 
           <label>Senha:</label>
           <input type="password" {...register("password")}
             className={errors.password ? "input error" : "input"}
           />
-          {apiError === "Senha inválida" && (
-            <span>{apiError}</span>
-          )} {errors.password && <span>{errors.password.message}</span>}
+          {errors.password && <span>{errors.password.message}</span>} */}
+          <LoginInput
+            id="password"
+            label="Senha:"
+            password={true}
+            register={register}
+            onChange={t => setPasswordField(t)}
+            error={errors.password?.message}
+          />
 
           <button type="submit">Entrar</button>
         </form>

@@ -134,120 +134,135 @@ export default function Formulario() {
         <>
             <Header />
             <form onSubmit={handleSubmit(onSubmit)} className="form">
-                <div className="form-grid">
-                    <Input label="Nome" id="nome" register={register} error={errors.nome?.message} />
-                    <Input label="Email" id="email" register={register} error={errors.email?.message} />
+                <fieldset>
+                    <legend>Cadastro:</legend>
+                    <div className="form-row">
+                        <Input label="Nome:" id="nome" register={register} error={errors.nome?.message} />
+                        <Input label="Email:" id="email" register={register} error={errors.email?.message} />
 
-                    <div className="field">
-                        <label htmlFor="celular">Celular</label>
-                        <Controller
-                            name="celular"
-                            control={control}
-                            render={({ field }) => (
-                                <IMaskInput
-                                    mask="(00) 00000-0000"
-                                    value={field.value}
-                                    onAccept={(value) => field.onChange(value)}
-                                    id="celular"
-                                    className={errors.celular ? "input error" : "input"}
-                                />
-                            )}
+                        <div className="">
+                            <label htmlFor="celular">Celular:</label>
+                            <Controller
+                                name="celular"
+                                control={control}
+                                render={({ field }) => (
+                                    <IMaskInput
+                                        mask="(00) 00000-0000"
+                                        value={field.value}
+                                        onAccept={(value) => field.onChange(value)}
+                                        id="celular"
+                                        className={errors.celular ? "input error" : "input"}
+                                    />
+                                )}
+                            />
+                            {errors.celular && <span>{errors.celular.message}</span>}
+                        </div>
+
+
+                        <div>
+                            <label htmlFor="cpf">CPF:</label>
+                            <Controller
+                                name="cpf"
+                                control={control}
+                                render={({ field }) => (
+                                    <IMaskInput
+                                        mask="000.000.000-00"
+                                        value={field.value}
+                                        onAccept={(value) => field.onChange(value)}
+                                        id="cpf"
+                                        className={errors.cpf ? "input error" : "input"}
+                                    />
+                                )}
+                            />
+                            {errors.cpf && <span>{errors.cpf.message}</span>}
+                        </div>
+
+                        <Input
+                            label="Rua:"
+                            id="rua"
+                            register={register}
+                            error={errors.rua?.message}
                         />
-                        {errors.celular && <span>{errors.celular.message}</span>}
+
+                        <Input
+                            label="Número:"
+                            id="numero"
+                            register={register}
+                            error={errors.numero?.message}
+                        />
+
+                        <Input
+                            label="Cidade:"
+                            id="cidade"
+                            register={register}
+                            error={errors.cidade?.message}
+                        />
+
+                        <Input
+                            label="Bairro:"
+                            id="bairro"
+                            register={register}
+                            error={errors.bairro?.message}
+                        />
+
+                        <div>
+                            <label htmlFor="cep">CEP:</label>
+                            <Controller
+                                name="cep"
+                                control={control}
+                                render={({ field }) => (
+                                    <IMaskInput
+                                        mask="00000-000"
+                                        value={field.value}
+                                        onAccept={(value) => field.onChange(value)}
+                                        id="cep"
+                                        className={errors.cep ? "input error" : "input"}
+                                    />
+                                )}
+                            />
+                            {errors.cep && <span>{errors.cep.message}</span>}
+                        </div>
+
                     </div>
-                </div>
-
-                <div>
-                    <label htmlFor="cpf">CPF:</label>
-                    <Controller
-                        name="cpf"
-                        control={control}
-                        render={({ field }) => (
-                            <IMaskInput
-                                mask="000.000.000-00"
-                                value={field.value}
-                                onAccept={(value) => field.onChange(value)}
-                                id="cpf"
-                                className={errors.cpf ? "input error" : "input"}
-                            />
-                        )}
-                    />
-                    {errors.cpf && <span>{errors.cpf.message}</span>}
-
-                    <Input
-                        label="Rua:"
-                        id="rua"
-                        register={register}
-                        error={errors.rua?.message}
-                    />
-
-                    <Input
-                        label="Número:"
-                        id="numero"
-                        register={register}
-                        error={errors.numero?.message}
-                    />
-                </div>
-
-                <div>
-                    <Input
-                        label="Cidade:"
-                        id="cidade"
-                        register={register}
-                        error={errors.cidade?.message}
-                    />
-
-                    <Input
-                        label="Bairro:"
-                        id="bairro"
-                        register={register}
-                        error={errors.bairro?.message}
-                    />
-
-                    <label htmlFor="cep">CEP:</label>
-                    <Controller
-                        name="cep"
-                        control={control}
-                        render={({ field }) => (
-                            <IMaskInput
-                                mask="00000-000"
-                                value={field.value}
-                                onAccept={(value) => field.onChange(value)}
-                                id="cep"
-                                className={errors.cep ? "input error" : "input"}
-                            />
-                        )}
-                    />
-                    {errors.cep && <span>{errors.cep.message}</span>}
-
-                </div>
 
 
+                    <div className="select">
+                        <div className="select-item">
+                            <select {...register("estado")} className={errors.estado ? "input error" : "input"} >
+                                <option value="">Estado</option>
+                                {[
+                                    "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA",
+                                    "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN",
+                                    "RS", "RO", "RR", "SC", "SP", "SE", "TO"
+                                ].map((uf) => (
+                                    <option key={uf} value={uf}>{uf}</option>
+                                ))}
+                            </select>
+                            <div>
+                                {errors.estado && <span>{errors.estado.message}</span>}
+                            </div>
+                        </div>
 
-                <select {...register("estado")} className={errors.estado ? "input error" : "input"} >
-                    <option value="">Estado</option>
-                    {[
-                        "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA",
-                        "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN",
-                        "RS", "RO", "RR", "SC", "SP", "SE", "TO"
-                    ].map((uf) => (
-                        <option key={uf} value={uf}>{uf}</option>
-                    ))}
-                </select>
-                {errors.estado && <span>{errors.estado.message}</span>}
-
-                <select {...register("estadoCivil")} className={errors.estadoCivil ? "input error" : "input"}>
-                    <option value="">Estado Civil</option>
-                    <option value="solteiro">Solteiro</option>
-                    <option value="casado">Casado</option>
-                    <option value="divorciado">Divorciado</option>
-                    <option value="viuvo">Viúvo</option>
-                </select>
-                {errors.estadoCivil && <span>{errors.estadoCivil.message}</span>}
+                        <div className="select-item">
+                            <select {...register("estadoCivil")} className={errors.estadoCivil ? "input error" : "input"}>
+                                <option value="">Estado Civil</option>
+                                <option value="solteiro">Solteiro</option>
+                                <option value="casado">Casado</option>
+                                <option value="divorciado">Divorciado</option>
+                                <option value="viuvo">Viúvo</option>
+                            </select>
+                            <div>
+                                {errors.estadoCivil && <span>{errors.estadoCivil.message}</span>}
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
 
                 <button type="submit">
                     {isEditing ? "Atualizar" : "Salvar"}
                 </button>
+
+
             </form>
 
         </>

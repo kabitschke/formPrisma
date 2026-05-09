@@ -12,13 +12,13 @@ export async function POST(req: Request) {
     });
 
     if (!user) {
-        return Response.json({ error: "Usuário não encontrado" }, { status: 404 });
+        return Response.json({ error: "Usuário ou senha inválidos" }, { status: 404 });
     }
 
     const passwordMatch = await bcrypt.compare(password, user.password);
 
     if (!passwordMatch) {
-        return Response.json({ error: "Senha inválida" }, { status: 401 });
+        return Response.json({ error: "Usuário ou senha inválidos" }, { status: 401 });
     }
 
     const token = jwt.sign(
