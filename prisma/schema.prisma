@@ -28,6 +28,7 @@ model Contato {
   cep         String
   estado      String
   estadoCivil String
+  complemento String?
   userId      String
   user        User     @relation(fields: [userId], references: [id])
   createdAt   DateTime @default(now())

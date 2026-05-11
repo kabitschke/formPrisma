@@ -4,4 +4,5 @@ export type InputProps = {
     register: any;
     error?: string;
     type?: string;
+    span?: string;
 };

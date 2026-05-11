@@ -1,9 +1,9 @@
 import { InputProps } from "../types/inputs";
 
-export function Input({ label, id, register, error, type = "text" }: InputProps) {
+export function Input({ label, id, register, error, span, type = "text" }: InputProps) {
     return (
         <div>
-            <label htmlFor={id}>{label}</label>
+            <label htmlFor={id}>{label} <span>{span}</span></label>
 
             <input
                 {...register(id)}

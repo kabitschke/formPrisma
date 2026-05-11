@@ -56,12 +56,7 @@ export default function Home() {
             className={errors.email ? "input error" : "input"}
           />
           {errors.email && <span>{errors.email.message}</span>}
-          {/* 
-          <label>Senha:</label>
-          <input type="password" {...register("password")}
-            className={errors.password ? "input error" : "input"}
-          />
-          {errors.password && <span>{errors.password.message}</span>} */}
+
           <LoginInput
             id="password"
             label="Senha:"

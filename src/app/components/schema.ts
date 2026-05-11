@@ -12,6 +12,13 @@ export const formSchema = z.object({
         .transform((val) => Number(val)),
     bairro: z.string().min(2, "Preencha o campo corretamente")
         .regex(/^[A-Za-zÀ-ÿ\s]+$/, "Preencha o campo corretamente"),
+    complemento: z.union([
+        z.literal(""),
+        z
+            .string()
+            .min(2, "Preencha o campo corretamente")
+            .regex(/^[A-Za-zÀ-ÿ\s]+$/, "Preencha o campo corretamente"),
+    ]),
     celular: z
         .string()
         .regex(/^\(\d{2}\) \d{5}-\d{4}$/, "Preencha o campo corretamente"),
