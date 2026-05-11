@@ -11,7 +11,7 @@ import Header from "../components/Header";
 import { ContatoForm } from "../types/contact";
 import { Input } from "../components/Input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocation, faLocationDot, faMapLocation, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faBarcode, faBuilding, faCity, faContactCard, faEnvelope, faHashtag, faHome, faLocation, faLocationDot, faMapLocation, faPhone, faUser } from "@fortawesome/free-solid-svg-icons";
 
 export default function Formulario() {
 
@@ -150,11 +150,32 @@ export default function Formulario() {
                 </div>
 
                 <div className="grid-3">
-                    <Input label="Nome" id="nome" span="*" register={register} error={errors.nome?.message} />
-                    <Input label="Email" id="email" span="*" register={register} error={errors.email?.message} />
+                    <Input
+                        label="Nome"
+                        id="nome"
+                        span="*"
+                        icon={faUser}
+                        register={register}
+                        error={errors.nome?.message}
+                    />
 
-                    <div className="">
+                    <Input
+                        label="Email"
+                        id="email"
+                        span="*"
+                        icon={faEnvelope}
+                        register={register}
+                        error={errors.email?.message}
+                    />
+
+                    <div className="input-container">
                         <label htmlFor="celular">Celular <span>*</span></label>
+
+                        <FontAwesomeIcon
+                            icon={faPhone}
+                            className="input-icon-mask"
+                        />
+
                         <Controller
                             name="celular"
                             control={control}
@@ -175,8 +196,12 @@ export default function Formulario() {
 
                 <div className="grid-2">
 
-                    <div>
+                    <div className="input-container">
                         <label htmlFor="cpf">CPF <span>*</span></label>
+                        <FontAwesomeIcon
+                            icon={faContactCard}
+                            className="input-icon-mask"
+                        />
                         <Controller
                             name="cpf"
                             control={control}
@@ -224,6 +249,7 @@ export default function Formulario() {
                     <Input
                         label="Rua"
                         id="rua"
+                        icon={faHome}
                         register={register}
                         span="*"
                         error={errors.rua?.message}
@@ -233,6 +259,7 @@ export default function Formulario() {
                         label="Número"
                         id="numero"
                         span="*"
+                        icon={faHashtag}
                         register={register}
                         error={errors.numero?.message}
                     />
@@ -247,6 +274,7 @@ export default function Formulario() {
                         label="Cidade"
                         id="cidade"
                         span="*"
+                        icon={faCity}
                         register={register}
                         error={errors.cidade?.message}
                     />
@@ -255,12 +283,17 @@ export default function Formulario() {
                         label="Bairro"
                         id="bairro"
                         span="*"
+                        icon={faMapLocation}
                         register={register}
                         error={errors.bairro?.message}
                     />
 
-                    <div>
+                    <div className="input-container">
                         <label htmlFor="cep">CEP <span>*</span></label>
+                        <FontAwesomeIcon
+                            icon={faBarcode}
+                            className="input-icon-mask"
+                        />
                         <Controller
                             name="cep"
                             control={control}
