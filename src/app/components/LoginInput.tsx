@@ -1,9 +1,7 @@
-"use client"
+"use client";
 
 import { useState } from "react";
-import { faEye, faEyeSlash, IconDefinition } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import { Eye, EyeClosed, LucideIcon } from "lucide-react";
 
 type InputProps = {
     label: string;
@@ -12,46 +10,63 @@ type InputProps = {
     register: any;
     error?: string;
     type?: string;
-    icon?: IconDefinition;
+    icon?: LucideIcon;
     onChange?: (newValue: string) => void;
 };
 
-export function LoginInput({ label, id, icon, register, error, password, type, onChange }: InputProps) {
-
+export function LoginInput({
+    label,
+    id,
+    icon: Icon,
+    register,
+    error,
+    password,
+    type = "text",
+    onChange,
+}: InputProps) {
     const [showPassword, setShowPassword] = useState(false);
 
+    const inputType = password
+        ? showPassword
+            ? "text"
+            : "password"
+        : type;
 
     return (
-        <div>
+        <div className="">
             <label htmlFor={id}>{label}</label>
 
-            {
-                icon &&
-                <FontAwesomeIcon
-                    icon={icon}
-                    className="icon"
+            <div className="input-container">
+                {Icon && (
+                    <Icon className="input-icon" size={20} />
+                )}
+
+                <input
+                    {...register(id)}
+                    id={id}
+                    type={inputType}
+                    className={error ? "input error" : "input"}
+                    onChange={(e) =>
+                        onChange && onChange(e.target.value)
+                    }
                 />
-            }
 
-            <input
-                {...register(id)}
-                id={id}
-                type={password && !showPassword ? 'password' : 'text'}//verifica se password esta true ou false, e ShowPassword true ou false altera para mostrar senha ou ocultar, muda o campo de password para text e vice versa.
-                className={error ? "input error" : "input"}
-                onChange={e => onChange && onChange(e.target.value)}
-            />
-
+                {password && (
+                    <div
+                        className="icon-button"
+                        onClick={() =>
+                            setShowPassword(!showPassword)
+                        }
+                    >
+                        {showPassword ? (
+                            <Eye size={20} />
+                        ) : (
+                            <EyeClosed size={20} />
+                        )}
+                    </div>
+                )}
+            </div>
             {error && <span>{error}</span>}
-
-            {
-                password &&
-                <FontAwesomeIcon
-                    onClick={() => setShowPassword(!showPassword)}
-                    //Olhinho do campo senha mostra ele aberto ou fechado dependendo de Showpassword que sempre que for clicado inverte o resultado.
-                    icon={showPassword ? faEye : faEyeSlash}
-                    className="icone"
-                />
-            }
         </div>
     );
 }

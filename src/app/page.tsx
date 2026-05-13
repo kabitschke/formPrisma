@@ -1,5 +1,5 @@
 "use client";
-
+import styles from "./page.module.css";
 import { useState } from "react";
 import { loginSchema, LoginData } from "../app/components/loginSchema";
 import { useForm } from "react-hook-form";
@@ -41,11 +41,11 @@ export default function Home() {
   }
 
   return (
-    <div className="login-container">
-      <div className="login-area">
+    <div className={styles.loginContainer}>
+      <div className={styles.loginArea}>
         <h1>Login</h1>
 
-        <form onSubmit={handleSubmit(handleLogin)} className="form">
+        <form onSubmit={handleSubmit(handleLogin)} className={styles.login}>
 
           {apiError && (
             <span className="errorLogin"><span style={{ fontWeight: "bold" }}>Erro</span>{apiError}</span>

@@ -1,4 +1,4 @@
-import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import { LucideIcon } from "lucide-react";
 
 export type InputProps = {
     label: string;
@@ -7,5 +7,5 @@ export type InputProps = {
     error?: string;
     type?: string;
     span?: string;
-    icon?: IconDefinition;
+    icon?: LucideIcon;
 };

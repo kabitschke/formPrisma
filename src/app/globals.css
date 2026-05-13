@@ -13,7 +13,6 @@ h1 {
   text-align: center;
 }
 
-
 label {
   font-size: 12px;
   font-weight: bold;
@@ -24,147 +23,8 @@ select {
   font-size: 12px;
 }
 
-.form {
-  max-width: 900px;
-  margin: auto;
-  padding: 24px;
-  background: #FFF;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, .08);
-  border-radius: 12px;
-}
 
-
-
-.grid-3 {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 20px;
-  margin-top: 20px;
-}
-
-.grid-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 20px;
-}
-
-.grid-address {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 16px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-
-.select {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin: 20px 0px;
-  gap: 20px;
-}
-
-.select-item {
-  display: grid;
-}
-
-fieldset {
-  padding: 10px;
-  border-radius: 10px;
-}
-
-legend {
-  font-size: 20px;
-}
-
-
-
-/* padrão dos campos */
-.form-row>div {
-  display: flex;
-  flex-direction: column;
-}
-
-.form input {
-  width: 100%;
-}
-
-
-
-.form button {
-  width: 100%;
-  height: 40px;
-  border-radius: 8px;
-  background: #2563eb;
-  color: white;
-  font-weight: bold;
-  border: none;
-  transition: 0.2s;
-  cursor: pointer;
-}
-
-.form button:hover {
-  background: #1d4ed8;
-}
-
-h2 {
-  font-size: 18px;
-  color: #333;
-}
-
-.info-text {
-  font-size: 10px;
-  color: #8e8e8e;
-}
-
-.info_area {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  margin: 0 -24px 0 -24px;
-  /*top,right,botton, left */
-  padding: 0 24px 16px 24px;
-  border-bottom: 1px solid #e5e7eb;
-
-}
-
-
-
-.info_ico {
-  border-radius: 5px;
-  background: #ccc;
-  padding: 10px;
-}
-
-/*Mensagem de Erro*/
-.form span {
-  color: #FF0000;
-  font-size: 9px;
-}
-
-.form input:invalid,
-.form select:invalid {
-  border-color: #FF2C2C
-    /*in*/
-}
-
-.input.error:focus {
-  border-color: #FF0000;
-  /*out*/
-}
-
-.errorLogin {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #FF0000;
-  padding: 10px;
-  border-radius: 5px;
-  background-color: #f7a0a0;
-}
-
-.form select,
+.form,
 .input {
   padding: 10px;
   border: 1px solid #60a5fa;
@@ -172,25 +32,38 @@ h2 {
   transition: all 0.25s ease;
 }
 
-.form select:focus,
-.input:focus {
-  outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 1px rgba(12, 171, 234, 0.2);
-}
 
-/* 🔴 erro */
-.form select.error,
-.input.error {
-  border-color: #FF0000;
-  animation: shake 0.2s ease;
-}
 
-/* glow vermelho */
-.form select.error:focus,
-.input.error:focus {
-  box-shadow: 0 0 0 1px rgba(255, 0, 32, 0.726);
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* animação */
 @keyframes shake {
@@ -258,69 +131,6 @@ table button {
 }
 
 
-/***************Login******************/
-.login-container {
-  max-width: 400px;
-  height: 100vh;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.login-area {
-  width: 400px;
-  height: 400px;
-  border: 1px solid #4682B4;
-  border-radius: 10px;
-  background-color: #B0C4DE;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.login-area h1 {
-  margin-top: 40px;
-}
-
-.login-area label {
-  margin-bottom: -8px;
-}
-
-.login-area button {
-  margin-top: 20px;
-}
-
-.login-area form {
-  display: flex;
-  flex-direction: column;
-}
-
-.login-area button {
-  padding: 10px;
-  border: none;
-  background: #1a44d9;
-  color: #fff;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-
-.login-area input {
-  width: 300px;
-  padding: 10px;
-  border: 1px solid #60a5fa;
-  border-radius: 8px;
-  transition: all 0.25s ease;
-}
-
-.login-area input:focus {
-  outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 1px rgba(12, 171, 234, 0.2);
-}
-
 
 .user {
   display: flex;
@@ -341,24 +151,26 @@ table button {
   margin-left: -30px;
 }
 
-.input-container {
+/** Login*/
+
+
+
+
+
+
+
+/*Login*/
+.input-container-login {
   position: relative;
   width: 100%;
 }
 
-.input-icon,
-.input-icon-mask {
+.icon-button {
   position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #777;
-  font-size: 16px;
-  pointer-events: none;
-}
-
-.input-icon-mask {
-  top: 70%;
+  top: 25%;
+  right: 10px;
+  color: #1a44d9;
+  cursor: pointer;
 }
 
 .form input {

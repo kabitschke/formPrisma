@@ -1,5 +1,5 @@
 "use client";
-
+import styles from "./page.module.css";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formSchema } from "../components/schema";
@@ -10,8 +10,8 @@ import { useSearchParams, useRouter } from "next/navigation";
 import Header from "../components/Header";
 import { ContatoForm } from "../types/contact";
 import { Input } from "../components/Input";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBarcode, faBuilding, faCity, faContactCard, faEnvelope, faHashtag, faHome, faLocation, faLocationDot, faMapLocation, faPhone, faUser } from "@fortawesome/free-solid-svg-icons";
+import { Barcode, Building2, Hash, House, IdCard, Mail, MapIcon, MapPin, Phone, Save, UserRound } from 'lucide-react';
+
 
 export default function Formulario() {
 
@@ -135,26 +135,25 @@ export default function Formulario() {
     return (
         <>
             <Header />
-            <form onSubmit={handleSubmit(onSubmit)} className="form">
+            <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
 
-                <div className="info_area">
-                    <div className="info_ico">
-                        <FontAwesomeIcon
-                            icon={faUser}
-                        /></div>
+                <div className={styles.infoArea}>
+                    <div className={styles.infoIco}>
+                        <UserRound />
+                    </div>
 
-                    <div className="info-area-text">
+                    <div >
                         <h2>Dados pessoais</h2>
-                        <div className="info-text">Informações de contato e pessoais</div>
+                        <div className={styles.infoText}>Informações de contato e pessoais</div>
                     </div>
                 </div>
 
-                <div className="grid-3">
+                <div className={styles.grid3}>
                     <Input
                         label="Nome"
                         id="nome"
                         span="*"
-                        icon={faUser}
+                        icon={UserRound}
                         register={register}
                         error={errors.nome?.message}
                     />
@@ -163,18 +162,17 @@ export default function Formulario() {
                         label="Email"
                         id="email"
                         span="*"
-                        icon={faEnvelope}
+                        icon={Mail}
                         register={register}
                         error={errors.email?.message}
                     />
 
-                    <div className="input-container">
+                    <div className={styles.inputContainer}>
                         <label htmlFor="celular">Celular <span>*</span></label>
 
-                        <FontAwesomeIcon
-                            icon={faPhone}
-                            className="input-icon-mask"
-                        />
+                        <div className={styles.inputIconMask}>
+                            <Phone />
+                        </div>
 
                         <Controller
                             name="celular"
@@ -194,14 +192,14 @@ export default function Formulario() {
 
                 </div>
 
-                <div className="grid-2">
+                <div className={styles.grid2}>
 
-                    <div className="input-container">
+                    <div className={styles.inputContainer}>
                         <label htmlFor="cpf">CPF <span>*</span></label>
-                        <FontAwesomeIcon
-                            icon={faContactCard}
-                            className="input-icon-mask"
-                        />
+
+                        <div className={styles.inputIconMask}>
+                            <IdCard />
+                        </div>
                         <Controller
                             name="cpf"
                             control={control}
@@ -218,7 +216,7 @@ export default function Formulario() {
                         {errors.cpf && <span>{errors.cpf.message}</span>}
                     </div>
 
-                    <div className="select-item">
+                    <div className={styles.selectItem}>
                         <label htmlFor="estadocivil">Estado civil <span>*</span></label>
                         <select {...register("estadoCivil")} id="estadocivil" className={errors.estadoCivil ? "input error" : "input"}>
                             <option value="">Estado Civil</option>
@@ -233,23 +231,22 @@ export default function Formulario() {
                     </div>
                 </div>
 
-                <div className="info_area">
-                    <div className="info_ico">
-                        <FontAwesomeIcon
-                            icon={faLocationDot}
-                        /></div>
+                <div className={styles.infoArea}>
+                    <div className={styles.infoIco}>
+                        <MapPin />
+                    </div>
 
-                    <div className="info-area-text">
+                    <div>
                         <h2>Endereço</h2>
-                        <div className="info-text">Informações de localização</div>
+                        <div className={styles.infoText}>Informações de localização</div>
                     </div>
                 </div>
 
-                <div className="grid-address">
+                <div className={styles.gridAddress}>
                     <Input
                         label="Rua"
                         id="rua"
-                        icon={faHome}
+                        icon={House}
                         register={register}
                         span="*"
                         error={errors.rua?.message}
@@ -259,22 +256,20 @@ export default function Formulario() {
                         label="Número"
                         id="numero"
                         span="*"
-                        icon={faHashtag}
+                        icon={Hash}
                         register={register}
                         error={errors.numero?.message}
                     />
 
                 </div>
 
-                <div className="grid-3">
-
-
+                <div className={styles.grid3}>
 
                     <Input
                         label="Cidade"
                         id="cidade"
                         span="*"
-                        icon={faCity}
+                        icon={Building2}
                         register={register}
                         error={errors.cidade?.message}
                     />
@@ -283,17 +278,17 @@ export default function Formulario() {
                         label="Bairro"
                         id="bairro"
                         span="*"
-                        icon={faMapLocation}
+                        icon={MapIcon}
                         register={register}
                         error={errors.bairro?.message}
                     />
 
-                    <div className="input-container">
+                    <div className={styles.inputContainer}>
                         <label htmlFor="cep">CEP <span>*</span></label>
-                        <FontAwesomeIcon
-                            icon={faBarcode}
-                            className="input-icon-mask"
-                        />
+
+                        <div className={styles.inputIconMask}>
+                            <Barcode />
+                        </div>
                         <Controller
                             name="cep"
                             control={control}
@@ -313,12 +308,12 @@ export default function Formulario() {
                 </div>
 
 
-                <div className="grid-2">
+                <div className={styles.grid2}>
 
-                    <div className="select-item">
+                    <div className={styles.selectItem}>
                         <label htmlFor="estado">Estado <span>*</span></label>
                         <select {...register("estado")} id="estado" className={errors.estado ? "input error" : "input"} >
-                            <option value="">Estado <span>*</span></option>
+                            <option value="">Estado </option>
                             {[
                                 "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA",
                                 "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN",
@@ -341,12 +336,12 @@ export default function Formulario() {
                 </div>
 
                 <button type="submit">
-                    {isEditing ? "Atualizar" : "Salvar"}
+                    <div className={styles.btnForm}>
+                        <Save />
+                        {isEditing ? "Atualizar" : "Salvar"}
+                    </div>
                 </button>
-
-
             </form>
-
         </>
     );
 }

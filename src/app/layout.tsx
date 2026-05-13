@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import "@fortawesome/fontawesome-svg-core/styles.css";
 import { Roboto, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 

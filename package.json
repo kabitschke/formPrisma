@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^7.2.0",
-    "@fortawesome/react-fontawesome": "^3.3.1",
     "@hookform/resolvers": "^5.2.2",
     "@prisma/adapter-mariadb": "^7.6.0",
     "@prisma/client": "^7.6.0",

@@ -1,5 +1,5 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { InputProps } from "../types/inputs";
+import styles from "../formulario/page.module.css";
 
 export function Input({
     label,
@@ -7,7 +7,7 @@ export function Input({
     register,
     error,
     span,
-    icon,
+    icon: Icon,
     type = "text",
 }: InputProps) {
     return (
@@ -16,12 +16,9 @@ export function Input({
                 {label} <span>{span}</span>
             </label>
 
-            <div className="input-container">
-                {icon && (
-                    <FontAwesomeIcon
-                        icon={icon}
-                        className="input-icon"
-                    />
+            <div className={styles.inputContainer}>
+                {Icon && (
+                    <Icon className={styles.inputIcon} size={20} />
                 )}
 
                 <input
