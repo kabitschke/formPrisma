@@ -7,10 +7,82 @@
     border-radius: 12px;
 }
 
+
+/*Mensagem de Erro  🔴*/
+.form span {
+    color: #FF0000;
+    font-size: 9px;
+}
+
+.form input:invalid,
+.form select:invalid {
+    border-color: #FF2C2C
+        /*in*/
+}
+
+.form select.error,
+.input.error {
+    border-color: #FF0000;
+    animation: shake 0.2s ease;
+}
+
+/* glow vermelho */
+.form select.error:focus,
+.input.error:focus {
+    box-shadow: 0 0 0 1px rgba(255, 0, 32, 0.726);
+}
+
+.input.error:focus {
+    border-color: #FF0000;
+    /*out*/
+}
+
+
+
+/*Form*/
+
 .form input {
     width: 100%;
 }
 
+.form select:focus,
+.input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 1px rgba(12, 171, 234, 0.2);
+}
+
+.input {
+    padding: 10px;
+    border: 1px solid #60a5fa;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+}
+
+/* animação */
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-3px);
+    }
+
+    50% {
+        transform: translateX(3px);
+    }
+
+    75% {
+        transform: translateX(-3px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/*Button*/
 .form button {
     width: 100%;
     height: 40px;
@@ -27,64 +99,14 @@
     background: #1d4ed8;
 }
 
-.form h2 {
-    font-size: 18px;
-    color: #333;
-}
-
-/*Mensagem de Erro*/
-.form span {
-    color: #FF0000;
-    font-size: 9px;
-}
-
-.form input:invalid,
-.form select:invalid {
-    border-color: #FF2C2C
-        /*in*/
-}
-
-/*Form*/
-
-
-.form select:focus,
-.input:focus {
-    outline: none;
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 1px rgba(12, 171, 234, 0.2);
-}
-
-/* 🔴 erro */
-.form select.error,
-.input.error {
-    border-color: #FF0000;
-    animation: shake 0.2s ease;
-}
-
-/* glow vermelho */
-.form select.error:focus,
-.input.error:focus {
-    box-shadow: 0 0 0 1px rgba(255, 0, 32, 0.726);
-}
-
-
-.input.error:focus {
-    border-color: #FF0000;
-    /*out*/
-}
-
-.errorLogin {
+.btnForm {
     display: flex;
-    flex-direction: column;
-    border: 1px solid #FF0000;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #f7a0a0;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
 }
 
-
-/*form*/
-
+/**Card Dados Pessoais e Endereço**/
 
 .infoArea {
     display: flex;
@@ -94,6 +116,11 @@
     /*top,right,botton, left */
     padding: 0 24px 16px 24px;
     border-bottom: 1px solid #e5e7eb;
+}
+
+.form h2 {
+    font-size: 18px;
+    color: #333;
 }
 
 .infoIco {
@@ -107,6 +134,10 @@
     font-size: 10px;
     color: #8e8e8e;
 }
+
+
+
+/******* Area Grid ***********/
 
 .grid2 {
     display: grid;
@@ -131,6 +162,7 @@
     margin-bottom: 20px;
 }
 
+/**** Position Icons *****/
 .inputContainer {
     position: relative;
     width: 100%;
@@ -153,11 +185,4 @@
 
 .selectItem {
     display: grid;
-}
-
-.btnForm {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
 }

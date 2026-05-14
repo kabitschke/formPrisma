@@ -183,7 +183,7 @@ export default function Formulario() {
                                     value={field.value}
                                     onAccept={(value) => field.onChange(value)}
                                     id="celular"
-                                    className={errors.celular ? "input error" : "input"}
+                                    className={errors.celular ? `${styles.input} ${styles.error}` : styles.input}
                                 />
                             )}
                         />
@@ -209,7 +209,7 @@ export default function Formulario() {
                                     value={field.value}
                                     onAccept={(value) => field.onChange(value)}
                                     id="cpf"
-                                    className={errors.cpf ? "input error" : "input"}
+                                    className={errors.cpf ? `${styles.input} ${styles.error}` : styles.input}
                                 />
                             )}
                         />
@@ -218,7 +218,7 @@ export default function Formulario() {
 
                     <div className={styles.selectItem}>
                         <label htmlFor="estadocivil">Estado civil <span>*</span></label>
-                        <select {...register("estadoCivil")} id="estadocivil" className={errors.estadoCivil ? "input error" : "input"}>
+                        <select {...register("estadoCivil")} id="estadocivil" className={errors.estadoCivil ? `${styles.input} ${styles.error}` : styles.input}>
                             <option value="">Estado Civil</option>
                             <option value="solteiro">Solteiro</option>
                             <option value="casado">Casado</option>
@@ -298,7 +298,7 @@ export default function Formulario() {
                                     value={field.value}
                                     onAccept={(value) => field.onChange(value)}
                                     id="cep"
-                                    className={errors.cep ? "input error" : "input"}
+                                    className={errors.cep ? `${styles.input} ${styles.error}` : styles.input}
                                 />
                             )}
                         />
@@ -312,7 +312,7 @@ export default function Formulario() {
 
                     <div className={styles.selectItem}>
                         <label htmlFor="estado">Estado <span>*</span></label>
-                        <select {...register("estado")} id="estado" className={errors.estado ? "input error" : "input"} >
+                        <select {...register("estado")} id="estado" className={errors.estado ? `${styles.input} ${styles.error}` : styles.input} >
                             <option value="">Estado </option>
                             {[
                                 "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA",

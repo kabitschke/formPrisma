@@ -25,7 +25,7 @@ export function Input({
                     {...register(id)}
                     id={id}
                     type={type}
-                    className={error ? "input error" : "input"}
+                    className={error ? `${styles.input} ${styles.error}` : styles.input}
                 />
             </div>
 
