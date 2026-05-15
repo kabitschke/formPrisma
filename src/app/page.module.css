@@ -10,22 +10,16 @@
 .loginArea {
     width: 400px;
     height: 400px;
-    border: 1px solid #4682B4;
+    /* border: 1px solid #4682B4;
     border-radius: 10px;
-    background-color: #B0C4DE;
+    background-color: #B0C4DE; */
+    background: #FFF;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, .08);
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-}
-
-.loginArea h1 {
-    margin-top: 40px;
-}
-
-
-.loginArea button {
-    margin-top: 20px;
 }
 
 .loginArea form {
@@ -33,31 +27,117 @@
     flex-direction: column;
 }
 
-.loginArea button {
+.loginArea h1 {
+    color: #333;
+}
+
+.login button {
+    margin-top: 25px;
+}
+
+.login button {
     padding: 10px;
     border: none;
-    background: #1a44d9;
+    background: #2563eb;
     color: #fff;
     border-radius: 6px;
     cursor: pointer;
+    font-weight: bold;
 }
 
-.loginArea input {
+.login button:hover {
+    background: #1d4ed8;
+}
+
+.login input {
     width: 300px;
     padding: 10px;
     border: 1px solid #60a5fa;
     border-radius: 8px;
     transition: all 0.25s ease;
-
+    padding-bottom: 10px;
 }
 
-.loginArea input:focus {
+.login input:focus {
     outline: none;
     border-color: #3b82f6;
     box-shadow: 0 0 0 1px rgba(12, 171, 234, 0.2);
 }
 
+.inputContainer {
+    position: relative;
+    width: 100%;
+}
+
+.iconButton {
+    position: absolute;
+    top: 25%;
+    right: 10px;
+    color: #898787;
+    cursor: pointer;
+}
+
+.login label {
+    color: #333;
+    margin-top: 20px;
+}
+
+/** Error**/
+
 .login span {
     color: #FF0000;
-    font-size: 9px;
+    font-size: 10px;
+}
+
+.errorLogin {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #FF0000;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f7a0a0;
+}
+
+
+.login input:invalid {
+    border-color: #FF2C2C
+        /*in*/
+}
+
+.input.error:focus {
+    border-color: #FF0000;
+    /*out*/
+}
+
+.login .input.error {
+    border-color: #FF0000;
+    animation: shake 0.2s ease;
+}
+
+/* glow vermelho */
+.login .input.error:focus {
+    box-shadow: 0 0 0 1px rgba(255, 0, 32, 0.726);
+}
+
+/* animação */
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-3px);
+    }
+
+    50% {
+        transform: translateX(3px);
+    }
+
+    75% {
+        transform: translateX(-3px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
 }

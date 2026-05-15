@@ -48,12 +48,13 @@ export default function Home() {
         <form onSubmit={handleSubmit(handleLogin)} className={styles.login}>
 
           {apiError && (
-            <span className="errorLogin"><span style={{ fontWeight: "bold" }}>Erro</span>{apiError}</span>
+            <span className={styles.errorLogin}><span style={{ fontWeight: "bold" }}>Erro</span>{apiError}</span>
           )}
 
-          <label>Email:</label>
+          <label htmlFor="email">Email:</label>
           <input type="text" {...register("email")}
-            className={errors.email ? "input error" : "input"}
+            className={errors.email ? `${styles.input} ${styles.error}` : styles.input}
+            id="email"
           />
           {errors.email && <span>{errors.email.message}</span>}
 

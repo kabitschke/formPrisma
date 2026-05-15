@@ -1,5 +1,5 @@
 "use client";
-
+import styles from "../page.module.css";
 import { useState } from "react";
 import { Eye, EyeClosed, LucideIcon } from "lucide-react";
 
@@ -33,19 +33,19 @@ export function LoginInput({
         : type;
 
     return (
-        <div className="">
-            <label htmlFor={id}>{label}</label>
+        <>
+            <label htmlFor={id} >{label}</label>
 
-            <div className="input-container">
+            <div className={styles.inputContainer}>
                 {Icon && (
-                    <Icon className="input-icon" size={20} />
+                    <Icon className={styles.inputIcon} size={20} />
                 )}
 
                 <input
                     {...register(id)}
                     id={id}
                     type={inputType}
-                    className={error ? "input error" : "input"}
+                    className={error ? `${styles.input} ${styles.error}` : styles.input}
                     onChange={(e) =>
                         onChange && onChange(e.target.value)
                     }
@@ -53,7 +53,7 @@ export function LoginInput({
 
                 {password && (
                     <div
-                        className="icon-button"
+                        className={styles.iconButton}
                         onClick={() =>
                             setShowPassword(!showPassword)
                         }
@@ -67,6 +67,6 @@ export function LoginInput({
                 )}
             </div>
             {error && <span>{error}</span>}
-        </div>
+        </>
     );
 }

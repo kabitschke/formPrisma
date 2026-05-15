@@ -183,7 +183,10 @@ export default function Formulario() {
                                     value={field.value}
                                     onAccept={(value) => field.onChange(value)}
                                     id="celular"
-                                    className={errors.celular ? `${styles.input} ${styles.error}` : styles.input}
+                                    className={`
+                                            ${styles.input}
+                                            ${styles.inputWithIcon}
+                                            ${errors.celular ? styles.error : ""}`}
                                 />
                             )}
                         />
@@ -209,7 +212,10 @@ export default function Formulario() {
                                     value={field.value}
                                     onAccept={(value) => field.onChange(value)}
                                     id="cpf"
-                                    className={errors.cpf ? `${styles.input} ${styles.error}` : styles.input}
+                                    className={`
+                                            ${styles.input}
+                                            ${styles.inputWithIcon}
+                                            ${errors.celular ? styles.error : ""}`}
                                 />
                             )}
                         />
@@ -298,7 +304,10 @@ export default function Formulario() {
                                     value={field.value}
                                     onAccept={(value) => field.onChange(value)}
                                     id="cep"
-                                    className={errors.cep ? `${styles.input} ${styles.error}` : styles.input}
+                                    className={`
+                                            ${styles.input}
+                                            ${styles.inputWithIcon}
+                                            ${errors.celular ? styles.error : ""}`}
                                 />
                             )}
                         />

@@ -25,7 +25,11 @@ export function Input({
                     {...register(id)}
                     id={id}
                     type={type}
-                    className={error ? `${styles.input} ${styles.error}` : styles.input}
+                    className={`
+                        ${styles.input}
+                        ${error ? styles.error : ""}
+                        ${Icon ? styles.inputWithIcon : ""}
+                    `}
                 />
             </div>
 

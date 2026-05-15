@@ -9,10 +9,6 @@ body {
   font-family: var(--font-roboto-sans);
 }
 
-h1 {
-  text-align: center;
-}
-
 label {
   font-size: 12px;
   font-weight: bold;
@@ -24,14 +20,20 @@ select {
 }
 
 
-.errorLogin {
+
+.user {
   display: flex;
   flex-direction: column;
-  border: 1px solid #FF0000;
-  padding: 10px;
-  border-radius: 5px;
-  background-color: #f7a0a0;
 }
+
+.user a {
+  color: #3b82f6;
+  cursor: pointer;
+}
+
+
+
+
 
 
 
@@ -112,26 +114,6 @@ table button {
 
 
 
-.user {
-  display: flex;
-  flex-direction: column;
-}
-
-.user a {
-  color: #3b82f6;
-  cursor: pointer;
-}
-
-
-
-.icone {
-  font-size: 12px;
-  cursor: pointer;
-  color: #8e8e8e;
-  margin-left: -30px;
-}
-
-/** Login*/
 
 
 
@@ -139,23 +121,13 @@ table button {
 
 
 
-/*Login*/
-.input-container-login {
-  position: relative;
-  width: 100%;
-}
 
-.icon-button {
-  position: absolute;
-  top: 25%;
-  right: 10px;
-  color: #1a44d9;
-  cursor: pointer;
-}
 
-.form input {
-  padding-left: 40px;
-}
+
+
+
+
+
 
 
 @media (max-width: 730px) {

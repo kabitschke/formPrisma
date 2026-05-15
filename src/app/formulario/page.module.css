@@ -7,7 +7,6 @@
     border-radius: 12px;
 }
 
-
 /*Mensagem de Erro  🔴*/
 .form span {
     color: #FF0000;
@@ -57,6 +56,10 @@
     border: 1px solid #60a5fa;
     border-radius: 8px;
     transition: all 0.25s ease;
+}
+
+.inputWithIcon {
+    padding-left: 40px;
 }
 
 /* animação */
@@ -180,7 +183,7 @@
 }
 
 .inputIconMask {
-    top: 70%;
+    top: 40px;
 }
 
 .selectItem {
