@@ -189,3 +189,11 @@
 .selectItem {
     display: grid;
 }
+
+/* @media (max-width: 730px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+
+} */

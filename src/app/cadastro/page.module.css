@@ -1,0 +1,128 @@
+.container {
+  max-width: 400px;
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cadastro {
+  display: flex;
+  flex-direction: column;
+}
+
+.cadastro h1 {
+  color: #333;
+}
+
+.cadastro button {
+  margin-top: 25px;
+}
+
+.cadastro button {
+  padding: 10px;
+  border: none;
+  background: #2563eb;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.cadastro button:hover {
+  background: #1d4ed8;
+}
+
+.cadastro input {
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #60a5fa;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+  padding-bottom: 10px;
+}
+
+.cadastro input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 1px rgba(12, 171, 234, 0.2);
+}
+
+.inputContainer {
+  position: relative;
+  width: 100%;
+}
+
+.iconButton {
+  position: absolute;
+  top: 25%;
+  right: 10px;
+  color: #898787;
+  cursor: pointer;
+}
+
+.cadastro label {
+  color: #333;
+  margin-top: 20px;
+}
+
+/** Error**/
+
+.cadastro span {
+  color: #FF0000;
+  font-size: 10px;
+}
+
+.errorcadastro {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #FF0000;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f7a0a0;
+}
+
+
+.cadastro input:invalid {
+  border-color: #FF2C2C
+    /*in*/
+}
+
+.input.error:focus {
+  border-color: #FF0000;
+  /*out*/
+}
+
+.cadastro .input.error {
+  border-color: #FF0000;
+  animation: shake 0.2s ease;
+}
+
+/* glow vermelho */
+.cadastro .input.error:focus {
+  box-shadow: 0 0 0 1px rgba(255, 0, 32, 0.726);
+}
+
+/* animação */
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-3px);
+  }
+
+  50% {
+    transform: translateX(3px);
+  }
+
+  75% {
+    transform: translateX(-3px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}

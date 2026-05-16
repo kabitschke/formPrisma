@@ -1,0 +1,14 @@
+.user {
+  width: 300px;
+  padding: 10px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, .08);
+  border-radius: 12px;
+}
+
+.user a {
+  color: #3b82f6;
+  cursor: pointer;
+}

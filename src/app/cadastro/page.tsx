@@ -1,4 +1,5 @@
 "use client"
+import styles from "./page.module.css"
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { cadastroSchema, CadastroData } from "../components/cadastroSchema";
@@ -37,31 +38,34 @@ export default function Cadastro() {
 
 
     return (
-        <form onSubmit={handleSubmit(handleLogin)} className="form">
+        <div className={styles.container}>
 
-            <label htmlFor="email">Email:</label>
-            <input
-                {...register("email")}
-                id="email"
-                className={errors.email ? "input error" : "input"}
-            />
-            <span>{apiError}</span>
-            {errors.email && <span>{errors.email.message}</span>}
+            <form onSubmit={handleSubmit(handleLogin)} className={styles.cadastro}>
 
-            <label htmlFor="password">Senha:</label>
-            <input
-                type="password"
-                {...register("password")}
-                id="password"
-                className={errors.password ? "input error" : "input"}
+                <label htmlFor="email">Email:</label>
+                <input
+                    {...register("email")}
+                    id="email"
+                    className={errors.email ? `${styles.input} ${styles.error}` : styles.input}
+                />
+                <span>{apiError}</span>
+                {errors.email && <span>{errors.email.message}</span>}
 
-            />
-            {errors.password && <span>{errors.password.message}</span>}
+                <label htmlFor="password">Senha:</label>
+                <input
+                    type="password"
+                    {...register("password")}
+                    id="password"
+                    className={errors.password ? `${styles.input} ${styles.error}` : styles.input}
+
+                />
+                {errors.password && <span>{errors.password.message}</span>}
 
 
 
-            <button type="submit">Cadastrar</button>
-        </form>
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
 
     )
 }

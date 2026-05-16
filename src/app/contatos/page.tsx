@@ -1,5 +1,5 @@
 "use client";
-
+import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Header from "../components/Header";
@@ -44,40 +44,42 @@ export default function ContatosPage() {
   }, []);
 
   return (
-    <div>
+    <>
       <Header />
-      <h1>Lista de Contatos</h1>
+      <div className={styles.container}>
+        <h1>Lista de Contatos</h1>
 
-      <div className="container">
-        <table>
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>Email</th>
-              <th>Celular</th>
-              <th>CPF</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {contatos.map((contato) => (
-              <tr key={contato.id}>
-                <td>{contato.nome}</td>
-                <td>{contato.email}</td>
-                <td>{contato.celular}</td>
-                <td>{contato.cpf}</td>
-                <td>
-                  <button onClick={() => handleEdit(contato.id)}>✏️</button>
-                  <button onClick={() => handleDelete(contato.id)}>❌</button>
-                </td>
-
+        <div className={styles.contatos}>
+          <table className={styles.contatosTable}>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Celular</th>
+                <th>CPF</th>
+                <th>Ações</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
 
+            <tbody>
+              {contatos.map((contato) => (
+                <tr key={contato.id}>
+                  <td>{contato.nome}</td>
+                  <td>{contato.email}</td>
+                  <td>{contato.celular}</td>
+                  <td>{contato.cpf}</td>
+                  <td>
+                    <button onClick={() => handleEdit(contato.id)}>✏️</button>
+                    <button onClick={() => handleDelete(contato.id)}>❌</button>
+                  </td>
+
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+        </div>
       </div>
-    </div>
+    </>
   );
 }

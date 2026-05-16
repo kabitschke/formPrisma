@@ -1,5 +1,5 @@
 "use client";
-
+import styles from "./header.module.css"
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -31,7 +31,7 @@ export default function Header() {
 
 
     return (
-        <div className="user">
+        <div className={styles.user}>
             <span>Olá, {nome}</span>
             <a onClick={handleLogout}>Sair</a>
         </div>
